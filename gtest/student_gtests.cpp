@@ -24,7 +24,7 @@ class GraphTest : public testing::Test {
         cout << s << endl;
       }
       */
-      cout << edit_distance_within("apple","bapple",1) << endl;
+      cout << edit_distance_within("apple","zoo",1) << endl;
       //result = generate_word_ladder("Aarhus","abaft",words);
       //print_word_ladder(result);
     }

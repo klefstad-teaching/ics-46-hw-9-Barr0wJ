@@ -7,7 +7,7 @@ void error(string word1, string word2, string msg){
 bool edit_distance_within(const std::string& str1, const std::string& str2, int d){
 	int str1_size = str1.size();
 	int str2_size = str2.size();
-	vector<int> vector0(str1_size+1);
+	vector<int> vector0(str2_size+1);
 	vector<int> vector1(str2_size+1);
 	for (int i = 0; i<str2_size;i++){
 		vector0[i] = i;
@@ -33,7 +33,7 @@ bool edit_distance_within(const std::string& str1, const std::string& str2, int 
 		}
 		swap(vector0,vector1);
 	}
-	return (vector0.back() <= d);
+	return (vector0[str2_size-1] <= d);
 }
 bool is_adjacent(const string& word1, const string& word2){
 	return edit_distance_within(word1,word2,1);
