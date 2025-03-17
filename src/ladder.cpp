@@ -5,37 +5,38 @@ void error(string word1, string word2, string msg){
 }
 
 bool edit_distance_within(const std::string& str1, const std::string& str2, int d){
-	int word1_size = str1.size();
-	int word2_size = str2.size();
-	int dif_len = word1_size-word2_size;
-	if (abs(dif_len)>1){
-		return false;
+	int str1_size = str1.size();
+	int str2_size = str2.size();
+	vector<int> vector0(str1_size+1);
+	vector<int> vector1(str2_size+1);
+	for (int i = 0; i<str2_size;i++){
+		vector0[i] = i;
 	}
-	else if (word1_size>word2_size){
-		for(int i = 0;i<word2_size;i++){
-			if (str1[i]!=str2[i]) return false;
+	for (int i = 0; i<str1_size-1;i++){
+		vector1[0] = i+1;
+
+		for (int j = 0; i<str2_size-1;i++){
+			int substitutionCost = -3;
+			int delectionCost = vector0[j+1]+1;
+			int insertionCost = vector1[j] +1;
+			if (str1[i] == str2[j]){
+				substitutionCost = vector0[j];
+				vector1[j+1] = min(min(delectionCost,insertionCost),substitutionCost);
+			}
+			else{
+				substitutionCost = vector0[j] + 1;
+				vector1[j+1] = min(min(delectionCost,insertionCost),substitutionCost);
+			}
+			if (substitutionCost == -3){
+				vector1[j+1] = min(delectionCost,insertionCost);
+			}
 		}
+		swap(vector0,vector1);
 	}
-	else if (word2_size>word1_size){
-		for(int i = 0;i<word1_size;i++){
-			if (str1[i]!=str2[i]) return false;
-		}
-	}
-	return true;
+	return (vector0.back() <= d);
 }
 bool is_adjacent(const string& word1, const string& word2){
-	int differ = 0;
-	int word1_size = word1.size();
-	if (word1.size()==word2.size()){
-		for(int i = 0;i<word1_size;i++){
-			if (word1[i]!=word2[i])differ++;
-		}
-	}
-	else{
-		return edit_distance_within(word1,word2,0);
-	}
-	if (differ>1) return false;
-	else return true;
+	return edit_distance_within(word1,word2,1);
 }
 
 

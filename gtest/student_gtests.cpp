@@ -17,15 +17,16 @@ class GraphTest : public testing::Test {
       }
       print_path(path, path_weight);
       */
-      load_words(words, "src/words.txt");
+      //load_words(words, "src/words.txt");
       /*
       int size = words.size();
       for (string s : words){
         cout << s << endl;
       }
       */
-      result = generate_word_ladder("Aarhus","abaft",words);
-      print_word_ladder(result);
+      cout << edit_distance_within("apple","bapple",1) << endl;
+      //result = generate_word_ladder("Aarhus","abaft",words);
+      //print_word_ladder(result);
     }
     set<string> words;
     vector<string> result;
