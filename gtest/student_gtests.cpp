@@ -6,6 +6,7 @@
 class GraphTest : public testing::Test {
  protected:
     GraphTest() {
+      /*
       file_to_graph("src/small.txt",testGraph);
 
       distances = dijkstra_shortest_path(testGraph, 0, previous);
@@ -15,7 +16,19 @@ class GraphTest : public testing::Test {
         path_weight+=distances[i];
       }
       print_path(path, path_weight);
+      */
+      load_words(words, "src/words.txt");
+      /*
+      int size = words.size();
+      for (string s : words){
+        cout << s << endl;
+      }
+      */
+      result = generate_word_ladder("Aarhus","abaft",words);
+      print_word_ladder(result);
     }
+    set<string> words;
+    vector<string> result;
     Graph testGraph;
     vector<int> previous;
     vector<int> distances;
