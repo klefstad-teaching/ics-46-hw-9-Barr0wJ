@@ -26,12 +26,16 @@ add_executable(ladder_main
   src/ladder_main.cpp
 )
 
+add_compile_options("-fsanitize=address,undefined")
+link_libraries("-fsanitize=address,undefined")
 find_package(GTest)
 if (GTest_FOUND)
   set(STUDENT_TEST_FILES
     gtest/gtestmain.cpp
     gtest/student_gtests.cpp
   )
+
+  include_directories(${GTEST_INCLUDE_DIRS})
 
   add_executable(student_gtests 
     ${STUDENT_TEST_FILES}
