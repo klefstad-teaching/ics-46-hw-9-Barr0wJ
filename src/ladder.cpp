@@ -62,7 +62,7 @@ vector<string> generate_word_ladder(const string& begin_word, const string& end_
 			}
 		}
 	}
-	error(begin_word,end_word, " No ladder found");
+	error(begin_word,end_word, " No word ladder found");
     return ladder;
 }
 void load_words(set<string> & word_list, const string& file_name){
