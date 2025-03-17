@@ -31,10 +31,11 @@ vector<int> extract_shortest_path(const vector<int>& distances, const vector<int
 	int size = distances.size();
 	stack<int> output;
 	vector<int> re_ordered;
-	for (int i = 0; i<size;i++){
+	output.push(destination);
+	for (int i = 1; i<size;i++){
 		output.push(previous[i]);
 	}
-	while(output.top()!=-1){
+	while(!output.empty()){
 		re_ordered.push_back(output.top());
 		output.pop();
 	}
